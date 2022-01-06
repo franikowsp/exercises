@@ -110,6 +110,8 @@ const Slider = ({
           style={{ touchAction: "pan-y" }}
           {...circleStyle}
           {...bind()}
+          onTouchStart={toggleHover}
+          onTouchEnd={toggleHover}
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
         />
