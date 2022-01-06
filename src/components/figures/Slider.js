@@ -50,8 +50,10 @@ const Slider = ({
 
   //   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
-    ({ offset: [oX, oY] }) => {
-      update(scaleValue(oX));
+    ({ down, offset: [oX, oY] }) => {
+      if (down) {
+        update(scaleValue(oX));
+      }
     },
     {
       bounds: { left: 0, right: width },
