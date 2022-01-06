@@ -48,46 +48,6 @@ export default function App() {
             >
               {`library("rasch")`}
             </SyntaxHighlighter>
-            <input
-              type="range"
-              min="-3"
-              max="3"
-              step=".001"
-              value={mu}
-              onChange={(e) => {
-                update("mu", +e.target.value);
-              }}
-            />
-            <input
-              type="range"
-              min="-3"
-              max="3"
-              step=".001"
-              value={beta}
-              onChange={(e) => {
-                update("beta", +e.target.value);
-              }}
-            />
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step=".001"
-              value={gamma}
-              onChange={(e) => {
-                update("gamma", +e.target.value);
-              }}
-            />
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step=".001"
-              value={lambda}
-              onChange={(e) => {
-                update("lambda", +e.target.value);
-              }}
-            />
             <Svg />
           </article>
         </div>

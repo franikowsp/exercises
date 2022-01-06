@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { useDrag } from "@use-gesture/react";
 import { useSpring, animated } from "@react-spring/web";
 
@@ -10,12 +10,14 @@ const Slider = ({
   y = 100,
   width = 300,
   range = [-3, 3],
-  // updateValue,
-  // value = mu
+  parameter,
+  update,
 }) => {
-  const { mu, update } = useRaschStore((state) => state);
-  const value = mu;
-  const updateValue = (value) => update("mu", value);
+  const [svgWidth, setSvgWidth] = useState(500);
+
+  //   const { mu, update } = useRaschStore((state) => state);
+  const value = parameter;
+  //   const update = (value) => update("mu", value);
 
   // Rescaling
   const scaleValue = d3
@@ -23,20 +25,11 @@ const Slider = ({
     .domain([0, width]) // unit: pixels
     .range(range); // unit: parameter scale
 
-  //   window.scaleValue = scaleValue;
-
-  //   const gaugeStart = scaleValue.invert(0);
-  //   const circleStart = scaleValue.invert(value);
-
-  //   // Circle hover
+  // Circle hover
   const [hover, setHover] = useState(false);
-
-  //   // Circle position
-  //   const [{ xCircle }, setXCircle] = useSpring(() => ({ xCircle: circleStart }));
 
   // Circle style (when hovering)
   const [circleStyle, apiCircleStyle] = useSpring(() => ({
-    // cx: 0,
     r: 15,
     fill: "#800080",
     strokeWidth: 0,
@@ -58,27 +51,18 @@ const Slider = ({
   //   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
     ({ offset: [oX, oY] }) => {
-      console.log(`oX: ${oX} x: ${x} ${window.innerWidth}`);
-      updateValue(scaleValue(oX));
-      //   apiCircleStyle.start({ cx: oX });
-
-      //   const valueToDisplay = scaleValue(oX);
-      //   apiCircleStyle.start({ cx: oX });
-      //   setLineProps({ x2: oX });
-      //   setTextProps({ fill: passed >= 0 ? positive : negative });
-      //   setLineProps({ stroke: passed >= 0 ? positive : negative });
-
-      //   console.log(oX);
+      update(scaleValue(oX));
     },
     {
       bounds: { left: 0, right: width },
       axis: "x",
-      transform: ([oX, oY]) => [(oX * 1000) / 500, oY],
-      from: () => [scaleValue.invert(mu), 0],
+      transform: ([oX, oY]) => [(oX * 1000) / svgWidth, oY],
+      from: () => [scaleValue.invert(parameter), 0],
     }
   );
 
-  const toggleHover = () => {
+  const toggleHover = (e) => {
+    setSvgWidth(e.target.parentElement.parentElement.clientWidth);
     setHover(!hover);
     if (hover) {
       apiCircleStyle.start({ fill: "#800080", r: 15, strokeWidth: 0 });
@@ -106,48 +90,28 @@ const Slider = ({
           strokeLinecap="round"
         />
         <animated.text
-          x={scaleValue.invert(mu)}
+          x={scaleValue.invert(parameter)}
           textAnchor="middle"
           {...textStyle}
         >
-          {mu.toFixed(2)}
+          {parameter.toFixed(2)}
         </animated.text>
         <animated.line
-          x2={scaleValue.invert(mu)}
+          x2={scaleValue.invert(parameter)}
           stroke="#800080"
           strokeWidth="25"
           strokeLinecap="round"
         />
         <animated.circle
-          cx={scaleValue.invert(mu)}
+          cx={scaleValue.invert(parameter)}
           stroke="#800080"
-          style={{ touchAction: "pan-y" }}
+          style={{ touchAction: "pan-x" }}
           {...circleStyle}
           {...bind()}
           onMouseEnter={toggleHover}
           onMouseLeave={toggleHover}
         />
       </g>
-      {/* <animated.text x={x} {...textProps} textAnchor="middle">
-        {Number(passed).toFixed(2)}
-      </animated.text> */}
-      {/* <animated.line
-        y1={y}
-        y2={y}
-        x1={gaugeStart}
-        x2={lineProps.x2}
-        {...lineProps}
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-      <animated.circle
-        cx={x}
-        cy={y}
-        {...circleStyle}
-        {...bind()}
-        onMouseEnter={toggleHover}
-        onMouseLeave={toggleHover}
-      /> */}
     </>
   );
 };
