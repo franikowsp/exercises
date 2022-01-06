@@ -69,6 +69,7 @@ const Slider = ({
       axis: "x",
       transform: ([oX, oY]) => [(oX * 1000) / svgWidth, oY],
       from: () => [scaleValue.invert(parameter), 0],
+      pointer: { touch: true },
     }
   );
 
