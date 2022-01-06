@@ -69,7 +69,7 @@ const Slider = ({
       axis: "x",
       transform: ([oX, oY]) => [(oX * 1000) / svgWidth, oY],
       from: () => [scaleValue.invert(parameter), 0],
-      pointer: { touch: true },
+      //   pointer: { touch: true },
     }
   );
 
@@ -119,12 +119,14 @@ const Slider = ({
           style={{ touchAction: "pan-y" }}
           {...circleStyle}
           {...bind()}
-          onMouseEnter={({ target }) =>
-            setSvgWidth(target.parentElement.parentElement.clientWidth)
-          }
-          onTouchStart={({ target }) =>
-            setSvgWidth(target.parentElement.parentElement.clientWidth)
-          }
+          onMove={({ target }) => {
+            setSvgWidth(target.parentElement.parentElement.clientWidth);
+            apiCircleStyle.start({ fill: "white", r: 20, strokeWidth: 5 });
+          }}
+          //   onTouchStart={({ target }) => {
+          //     setSvgWidth(target.parentElement.parentElement.clientWidth);
+          //     apiCircleStyle.start({ fill: "white", r: 20, strokeWidth: 5 });
+          //   }}
         />
       </g>
     </>
