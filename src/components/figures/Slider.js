@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useDrag } from "@use-gesture/react";
 import { useSpring, animated } from "@react-spring/web";
 
@@ -64,9 +64,9 @@ const Slider = ({
 
   //   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
-    ({ xy, offset: [oX], initial: [iX] }) => {
-      //   console.log(`iX: ${iX} oX: ${oX} x: ${x} oX - x: ${oX - iX}`);
-      update("mu", scaleValue(oX));
+    ({ offset: [oX], initial: [iX] }) => {
+      console.log(`iX: ${iX} oX: ${oX} x: ${x} oX - x: ${oX - iX}`);
+      updateValue(scaleValue(oX));
       //   apiCircleStyle.start({ cx: oX });
 
       //   const valueToDisplay = scaleValue(oX);
@@ -127,6 +127,7 @@ const Slider = ({
         <animated.circle
           cx={scaleValue.invert(mu)}
           stroke="#800080"
+          style={{ touchAction: "pan-y" }}
           {...circleStyle}
           {...bind()}
           onMouseEnter={toggleHover}

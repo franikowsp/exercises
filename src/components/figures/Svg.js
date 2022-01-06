@@ -14,6 +14,8 @@ export default function Figure({
       <svg
         preserveAspectRatio="xMaxYMid meet"
         viewBox={`0 0 ${width} ${height}`}
+        // width={width}
+        // height={height}
         className="bg-white rounded-lg mt-5"
       >
         <Slider />
