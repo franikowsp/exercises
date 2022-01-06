@@ -87,7 +87,7 @@ rasch(1+2)
 summary(fit)`}
               </SyntaxHighlighter>
             </div>
-            <div className="px-10">
+            <div className="sm:grid sm:grid-cols-2">
               {parameterArray.map((d) => {
                 return (
                   <React.Fragment key={d.id}>
