@@ -105,7 +105,7 @@ const Slider = ({
         <animated.circle
           cx={scaleValue.invert(parameter)}
           stroke="#800080"
-          style={{ touchAction: "pan-x" }}
+          style={{ touchAction: "pan-y" }}
           {...circleStyle}
           {...bind()}
           onMouseEnter={toggleHover}
