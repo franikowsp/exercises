@@ -55,17 +55,10 @@ const Slider = ({
     },
   }));
 
-  const [gaugeStyle, apiGaugeStyle] = useSpring(() => ({
-    stroke: "#800080",
-    config: {
-      mass: 0.1,
-    },
-  }));
-
   //   // Set the drag hook and define component movement based on gesture data
   const bind = useDrag(
-    ({ offset: [oX], initial: [iX] }) => {
-      console.log(`iX: ${iX} oX: ${oX} x: ${x} oX - x: ${oX - iX}`);
+    ({ offset: [oX, oY] }) => {
+      console.log(`oX: ${oX} x: ${x} ${window.innerWidth}`);
       updateValue(scaleValue(oX));
       //   apiCircleStyle.start({ cx: oX });
 
@@ -79,8 +72,9 @@ const Slider = ({
     },
     {
       bounds: { left: 0, right: width },
-      //   axis: "x",
-      //   from: () => [scaleValue.invert(mu).get(), 0],
+      axis: "x",
+      transform: ([oX, oY]) => [(oX * 1000) / 500, oY],
+      from: () => [scaleValue.invert(mu), 0],
     }
   );
 
@@ -120,7 +114,7 @@ const Slider = ({
         </animated.text>
         <animated.line
           x2={scaleValue.invert(mu)}
-          {...gaugeStyle}
+          stroke="#800080"
           strokeWidth="25"
           strokeLinecap="round"
         />
