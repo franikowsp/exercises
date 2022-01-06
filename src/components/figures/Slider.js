@@ -52,7 +52,16 @@ const Slider = ({
   const bind = useDrag(
     ({ down, offset: [oX, oY] }) => {
       if (down) {
+        apiCircleStyle.start({ fill: "white", r: 20, strokeWidth: 5 });
+        apiTextStyle.start({ y: -40 });
         update(scaleValue(oX));
+      } else {
+        apiCircleStyle.start({
+          fill: "#800080",
+          r: 15,
+          strokeWidth: 0,
+        });
+        apiTextStyle.start({ y: -30 });
       }
     },
     {
@@ -63,17 +72,16 @@ const Slider = ({
     }
   );
 
-  const toggleHover = (e) => {
-    setSvgWidth(e.target.parentElement.parentElement.clientWidth);
-    setHover(!hover);
-    if (hover) {
-      apiCircleStyle.start({ fill: "#800080", r: 15, strokeWidth: 0 });
-      apiTextStyle.start({ y: -30 });
-    } else {
-      apiCircleStyle.start({ fill: "white", r: 20, strokeWidth: 5 });
-      apiTextStyle.start({ y: -40 });
-    }
-  };
+  //   const toggleHover = (e) => {
+  //     setHover(!hover);
+  //     if (hover) {
+  //       apiCircleStyle.start({ fill: "#800080", r: 15, strokeWidth: 0 });
+  //       apiTextStyle.start({ y: -30 });
+  //     } else {
+  //       apiCircleStyle.start({ fill: "white", r: 20, strokeWidth: 5 });
+  //       apiTextStyle.start({ y: -40 });
+  //     }
+  //   };
 
   return (
     <>
@@ -110,10 +118,12 @@ const Slider = ({
           style={{ touchAction: "pan-y" }}
           {...circleStyle}
           {...bind()}
-          onTouchStart={toggleHover}
-          onTouchEnd={toggleHover}
-          onMouseEnter={toggleHover}
-          onMouseLeave={toggleHover}
+          onMouseEnter={({ target }) =>
+            setSvgWidth(target.parentElement.parentElement.clientWidth)
+          }
+          onTouchStart={({ target }) =>
+            setSvgWidth(target.parentElement.parentElement.clientWidth)
+          }
         />
       </g>
     </>
