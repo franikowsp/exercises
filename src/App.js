@@ -1,42 +1,13 @@
-import React, { useState } from "react";
-import { useSpring, animated } from "react-spring";
+import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import * as d3 from "d3";
-import * as jstat from "jstat";
 
-const rasch = (x, mu = 0, beta = 1, gamma = 0, lambda = 0) => {
-  const exponent = beta * (x - mu);
-  const probability =
-    gamma +
-    ((1 - gamma - lambda) * Math.exp(exponent)) / (1 + Math.exp(exponent));
+import Svg from "./components/figures/Svg";
 
-  return probability;
-};
-
-const xScale = d3.scaleLinear().domain([-3, 3]).range([100, 900]);
-const yScale = d3.scaleLinear().domain([0, 1]).range([900, 100]);
-
-const x = jstat(-3, 3, 101)[0];
-
-const generatePath = (mu, beta, gamma, lambda) => {
-  const values = x.map((x) => [
-    xScale(x),
-    yScale(rasch(x, mu, beta, gamma, lambda)),
-  ]);
-
-  return d3.line()(values);
-};
+import useRaschStore from "./stores/useRaschStore";
 
 export default function App() {
-  const [mu, setMu] = useState(0);
-  const [beta, setBeta] = useState(1);
-  const [gamma, setGamma] = useState(0);
-  const [lambda, setLambda] = useState(0);
-
-  const { d } = useSpring({ d: generatePath(mu, beta, gamma, lambda) });
-
-  //   console.log(path);
+  const { mu, beta, gamma, lambda, update } = useRaschStore((state) => state);
 
   return (
     <div>
@@ -84,7 +55,7 @@ export default function App() {
               step=".001"
               value={mu}
               onChange={(e) => {
-                setMu(+e.target.value);
+                update("mu", +e.target.value);
               }}
             />
             <input
@@ -94,7 +65,7 @@ export default function App() {
               step=".001"
               value={beta}
               onChange={(e) => {
-                setBeta(+e.target.value);
+                update("beta", +e.target.value);
               }}
             />
             <input
@@ -104,7 +75,7 @@ export default function App() {
               step=".001"
               value={gamma}
               onChange={(e) => {
-                setGamma(+e.target.value);
+                update("gamma", +e.target.value);
               }}
             />
             <input
@@ -114,21 +85,10 @@ export default function App() {
               step=".001"
               value={lambda}
               onChange={(e) => {
-                setLambda(+e.target.value);
+                update("lambda", +e.target.value);
               }}
             />
-            <svg
-              preserveAspectRatio="xMaxYMid meet"
-              viewBox="0 0 1000 1000"
-              className="bg-white rounded-lg mt-5"
-            >
-              <animated.path
-                d={d}
-                stroke="purple"
-                strokeWidth={5}
-                fill="none"
-              />
-            </svg>
+            <Svg />
           </article>
         </div>
       </div>
