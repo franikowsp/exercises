@@ -4,18 +4,15 @@ import { useSpring, animated } from "@react-spring/web";
 import * as d3 from "d3";
 import * as jstat from "jstat";
 
-import useRaschStore from "../../stores/useRaschStore";
+import useRegressionStore from "../../stores/useRegressionStore";
 
-const rasch = (x, mu = 0, beta = 1, gamma = 0, lambda = 0) => {
-  const exponent = beta * (x - mu);
-  const probability =
-    gamma +
-    ((1 - gamma - lambda) * Math.exp(exponent)) / (1 + Math.exp(exponent));
+const regression = (x, beta0 = 0, beta1 = 1) => {
+  const y = beta0 + beta1 * x;
 
-  return probability;
+  return y;
 };
 
-export default function Rasch({
+export default function Regression({
   domainX = [-3, 3],
   rangeX = [100, 900],
   domainY = [0, 1],
@@ -24,13 +21,15 @@ export default function Rasch({
   const { generatePath } = useMemo(() => {
     const xScale = d3.scaleLinear().domain(domainX).range(rangeX);
     const yScale = d3.scaleLinear().domain(domainY).range(rangeY);
+    // window.yScale = yScale;
+    // window.d3 = d3;
 
     const x = jstat(...domainX, 101)[0];
 
-    const generatePath = (mu, beta, gamma, lambda) => {
+    const generatePath = (beta0, beta1) => {
       const values = x.map((x) => [
         xScale(x),
-        yScale(rasch(x, mu, beta, gamma, lambda)),
+        yScale(regression(x, beta0, beta1, domainY)),
       ]);
 
       return d3.line()(values);
@@ -44,15 +43,22 @@ export default function Rasch({
     rangeY.join("-"),
   ]);
 
-  const { mu, beta, gamma, lambda } = useRaschStore((state) => state);
+  //   const { beta0, beta1, gamma, lambda } = useRaschStore((state) => state);
+  const { beta0, beta1 } = useRegressionStore((state) => state);
 
   const { d } = useSpring({
-    d: generatePath(mu, beta, gamma, lambda),
+    d: generatePath(beta0, beta1),
   });
 
   return (
     <>
-      <animated.path d={d} stroke="purple" strokeWidth={5} fill="none" />
+      <animated.path
+        d={d}
+        stroke="purple"
+        strokeWidth={5}
+        fill="none"
+        clipPath="url(#clip-id)"
+      />
     </>
   );
 }

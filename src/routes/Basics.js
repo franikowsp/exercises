@@ -1,47 +1,52 @@
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import RaschFigure from "../components/figures/RaschFigure";
+import RegressionFigure from "../components/figures/RegressionFigure";
 import Slider from "../components/controls/Slider";
+import { BlockMath, InlineMath } from "react-katex";
 
-import useRaschStore from "../stores/useRaschStore";
+import * as jstat from "jstat";
 
-export default function Rasch() {
-  const { mu, beta, gamma, lambda, update } = useRaschStore((state) => state);
+import useRegressionStore from "../stores/useRegressionStore";
+
+const getCoefficient = (points, beta0, beta1) => {
+  const yArray = points.map((d) => {
+    const { x, y } = d;
+    const yPred = beta0 + beta1 * x;
+
+    return { y, yPred };
+  });
+
+  console.log(yArray);
+
+  const y = yArray.map((d) => d.y);
+  const yPred = yArray.map((d) => d.yPred);
+  return jstat.corrcoeff(y, yPred);
+};
+
+export default function Basics() {
+  const { beta0, beta1, points, update } = useRegressionStore((state) => state);
 
   const parameterArray = [
     {
-      id: "mu",
-      parameter: mu,
-      update: (value) => update("mu", value),
-      min: -3,
-      max: 3,
-      label: "μ",
+      id: "beta0",
+      parameter: beta0,
+      update: (value) => update("beta0", value),
+      min: -20,
+      max: 20,
+      label: (
+        // <p>
+        //   &beta;<sub>0</sub>
+        // </p>
+        <InlineMath>\beta_0</InlineMath>
+      ),
     },
     {
-      id: "beta",
-      parameter: beta,
-      update: (value) => update("beta", value),
-      min: -3,
-      max: 3,
-      label: "β",
-    },
-    {
-      id: "gamma",
-      parameter: gamma,
-      update: (value) => update("gamma", value),
-      min: 0,
-      max: 1,
-      label: "γ",
-    },
-    {
-      id: "lambda",
-      parameter: lambda,
-      update: (value) => update("lambda", value),
-      min: 0,
-      max: 1,
-      label: "λ",
+      id: "beta1",
+      parameter: beta1,
+      update: (value) => update("beta1", value),
+      min: -10,
+      max: 10,
+      label: <InlineMath>\beta_1</InlineMath>,
     },
   ];
 
@@ -53,7 +58,7 @@ export default function Rasch() {
             Testtheorie und Testkonstruktion
           </h3>
           <h2 className="font-semibold text-4xl text-gray-700">
-            Das Rasch-Modell
+            Statistische Grundlagen
           </h2>
           <article className="leading-normal">
             <div>
@@ -74,18 +79,10 @@ export default function Rasch() {
                 Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies
                 nisi.
               </p>
-            </div>
-            <div>
-              <SyntaxHighlighter
-                language="r"
-                style={vscDarkPlus}
-                showLineNumbers={true}
-                className="rounded-lg"
-              >
-                {`library("rasch")
-rasch(1+2)
-summary(fit)`}
-              </SyntaxHighlighter>
+              <div className="text-center">
+                <BlockMath>{`\\hat{y} = \\beta_0 + \\beta_1 x`}</BlockMath>
+                <BlockMath>{`y = \\beta_0 + \\beta_1 x + \\varepsilon`}</BlockMath>
+              </div>
             </div>
             <div className="sm:grid sm:grid-cols-2">
               {parameterArray.map((d) => {
@@ -96,7 +93,8 @@ summary(fit)`}
                 );
               })}
             </div>
-            <RaschFigure />
+            <RegressionFigure />
+            <p>{getCoefficient(points, beta0, beta1)}</p>
           </article>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { FaBeer } from "react-icons/fa";
 
 import Rasch from "./routes/Rasch";
+import Basics from "./routes/Basics";
 
 function Home() {
   return (
@@ -25,7 +25,7 @@ function Home() {
                 verfügbar sein.
               </p>
               <div className="sm:grid sm:grid-cols-2">
-                <Link to="/rasch">
+                <Link to="/basics">
                   <div className="bg-slate-100 rounded-md shadow-sm mx-2 px-1 py-3 hover:shadow-md hover:bg-slate-200">
                     <div className="bg-purple-800 rounded-full w-5 h-5 text-center">
                       <p className="inline-block align-center">
@@ -33,14 +33,13 @@ function Home() {
                       </p>
                     </div>
                     <h3 className="text-purple-800 text-xs font-semibold">
-                      Seminar 12
+                      Seminar 2
                     </h3>
                     <h2 className="font-semibold text-gray-700 text-xl sm:text-lg">
-                      Das Rasch-Modell
+                      Statistische Grundlagen
                     </h2>
                     <p className="text-xs">
-                      Eine Einführung in das Rasch-Modell inklusive einer
-                      interaktiven Übung.
+                      Ein paar interaktive Beispiele zur Regression.
                     </p>
                   </div>
                 </Link>
@@ -71,6 +70,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/basics" element={<Basics />} />
       <Route path="/rasch" element={<Rasch />} />
     </Routes>
   );

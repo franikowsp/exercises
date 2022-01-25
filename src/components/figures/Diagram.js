@@ -7,12 +7,14 @@ export default function Diagram({
   rangeX = [100, 900],
   domainY = [0, 1],
   rangeY = [900, 100],
+  labelX = "x",
+  labelY = "y",
 }) {
   const { ticksX, widthX } = useMemo(() => {
     const xScale = d3.scaleLinear().domain(domainX).range(rangeX);
 
     const widthX = Math.abs(rangeX[1] - rangeX[0]);
-    const pixelsPerTickX = 50;
+    const pixelsPerTickX = 100;
     const numberOfTicksTargetX = Math.max(
       1,
       Math.floor(widthX / pixelsPerTickX)

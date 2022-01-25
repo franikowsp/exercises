@@ -5,6 +5,7 @@ import { HashRouter } from "react-router-dom";
 import ScrollToTop from "./components/convenience/ScrollToTop";
 
 import "./index.css";
+import "katex/dist/katex.min.css";
 
 ReactDOM.render(
   <HashRouter>

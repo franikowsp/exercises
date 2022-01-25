@@ -3,7 +3,7 @@ import React from "react";
 import Diagram from "./Diagram";
 import Rasch from "./Rasch";
 
-export default function Figure({
+export default function RaschFigure({
   width = 1000,
   height = 1000,
   margins = { top: 200, bottom: 150, left: 150, right: 100 },
