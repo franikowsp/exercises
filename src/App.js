@@ -12,8 +12,8 @@ function Home() {
           {/* <h3 className="text-teal-700 font-semibold">
             Testtheorie und Testkonstruktion
           </h3> */}
-          <h2 className="font-bold text-3xl sm:text-4xl text-decoration-line: underline decoration-teal-600/20 decoration-[20px] underline-offset-[-0.25em] decoration-skip-ink">
-            &nbsp;Übungsaufgaben&nbsp;
+          <h2 className="font-bold text-3xl sm:text-4xl">
+            <span className="underlined">&nbsp;Übungsaufgaben&nbsp;</span>
           </h2>
           <article className="leading-normal">
             <div>
