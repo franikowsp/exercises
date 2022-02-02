@@ -54,7 +54,7 @@ export default function Regression({
     <>
       <animated.path
         d={d}
-        stroke="purple"
+        stroke="#12dcea"
         strokeWidth={5}
         fill="none"
         clipPath="url(#clip-id)"

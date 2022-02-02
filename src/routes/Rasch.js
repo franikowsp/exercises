@@ -47,13 +47,13 @@ export default function Rasch() {
 
   return (
     <div>
-      <div className="bg-purple-100 h-screen w-[100%] p-0 m-0 absolute">
-        <div className="bg-gray-50 sm:rounded-lg sm:w-[640px] sm:mx-auto sm:mt-10 sm:shadow-lg px-10 sm:px-20 py-10 relative">
-          <h3 className="text-purple-800 font-semibold">
+      <div className="bg-teal-700/20 w-[100%] p-0 m-0 absolute">
+        <div className="bg-gray-50 sm:rounded-lg sm:w-[640px] sm:mx-auto sm:mt-10 sm:mb-10 sm:shadow-lg px-10 sm:px-20 py-10 relative">
+          {/* <h3 className="text-teal-700 font-semibold">
             Testtheorie und Testkonstruktion
-          </h3>
-          <h2 className="font-semibold text-4xl text-gray-700">
-            Das Rasch-Modell
+          </h3> */}
+          <h2 className="font-bold text-3xl sm:text-4xl text-decoration-line: underline decoration-teal-600/20 decoration-[20px] underline-offset-[-10px] decoration-skip-ink">
+            &nbsp;Das Rasch-Modell&nbsp;
           </h2>
           <article className="leading-normal">
             <div>

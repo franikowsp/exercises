@@ -68,7 +68,7 @@ export default function Points({
                 x2={animation.cx}
                 y1={animation.cy}
                 y2={animation.y2}
-                stroke="purple"
+                stroke="#12dcea"
                 opacity={0.9}
               />
             </g>

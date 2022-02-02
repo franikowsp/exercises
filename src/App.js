@@ -7,13 +7,13 @@ import Basics from "./routes/Basics";
 function Home() {
   return (
     <div>
-      <div className="bg-purple-100 h-screen w-[100%] p-0 m-0 absolute">
+      <div className="bg-teal-700/20 h-auto sm:h-screen w-[100%] p-0 m-0 absolute">
         <div className="bg-gray-50 sm:rounded-lg sm:w-[640px] sm:mx-auto sm:mt-10 sm:shadow-lg px-10 sm:px-20 py-10 relative">
-          <h3 className="text-purple-800 font-semibold">
+          {/* <h3 className="text-teal-700 font-semibold">
             Testtheorie und Testkonstruktion
-          </h3>
-          <h2 className="font-semibold text-4xl text-gray-700">
-            Übungsaufgaben
+          </h3> */}
+          <h2 className="font-bold text-4xl text-decoration-line: underline decoration-teal-600/20 decoration-[20px] underline-offset-[-10px] decoration-skip-ink">
+            &nbsp;Übungsaufgaben&nbsp;
           </h2>
           <article className="leading-normal">
             <div>
@@ -27,12 +27,12 @@ function Home() {
               <div className="sm:grid sm:grid-cols-2">
                 <Link to="/basics">
                   <div className="bg-slate-100 rounded-md shadow-sm mx-2 px-1 py-3 hover:shadow-md hover:bg-slate-200">
-                    <div className="bg-purple-800 rounded-full w-5 h-5 text-center">
+                    <div className="bg-teal-600 rounded-full w-5 h-5 text-center">
                       <p className="inline-block align-center">
                         {/* <FaBeer color="white" /> */}P
                       </p>
                     </div>
-                    <h3 className="text-purple-800 text-xs font-semibold">
+                    <h3 className="text-teal-600 text-xs font-semibold">
                       Seminar 2
                     </h3>
                     <h2 className="font-semibold text-gray-700 text-xl sm:text-lg">
@@ -45,7 +45,7 @@ function Home() {
                 </Link>
                 <Link to="/rasch">
                   <div className="bg-slate-100 rounded-md shadow-sm mx-2 px-1 py-3 hover:shadow-md hover:bg-slate-200">
-                    <h3 className="text-purple-800 text-xs font-semibold">
+                    <h3 className="text-teal-600 text-xs font-semibold">
                       Seminar 12
                     </h3>
                     <h2 className="font-semibold text-gray-700 text-xl sm:text-lg">

@@ -52,7 +52,7 @@ export default function Rasch({
 
   return (
     <>
-      <animated.path d={d} stroke="purple" strokeWidth={5} fill="none" />
+      <animated.path d={d} stroke="#12dcea" strokeWidth={5} fill="none" />
     </>
   );
 }

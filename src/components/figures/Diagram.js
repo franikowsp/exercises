@@ -51,8 +51,8 @@ export default function Diagram({
         y={rangeY[1]}
         width={widthX}
         height={widthY}
-        fill="#800080"
-        opacity={0.1}
+        fill="#12dcea"
+        opacity={0.05}
       />
       {/* x axis */}
       <g
