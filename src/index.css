@@ -6,13 +6,13 @@
   text-decoration-skip-ink: none;
 } */
 
-.underlined {
+.underlined > span {
   text-decoration: none;
   position: relative;
   z-index: 0;
 }
 
-.underlined::after {
+.underlined > span::after {
   position: absolute;
   content: "";
   background: #12dcea;
