@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/exercises/static/css/main.8f000161.css",
-    "main.js": "/exercises/static/js/main.3c009d06.js",
+    "main.css": "/exercises/static/css/main.9ce8370c.css",
+    "main.js": "/exercises/static/js/main.b8ab00a4.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/exercises/static/media/KaTeX_AMS-Regular.797708391f0380251e6c.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/exercises/static/media/KaTeX_Main-Regular.c13710b121e1ae9a9d2f.ttf",
     "static/media/KaTeX_Main-Bold.ttf": "/exercises/static/media/KaTeX_Main-Bold.741b6dafa705c6d25b25.ttf",
@@ -60,11 +60,11 @@
     "static/media/KaTeX_Size3-Regular.woff": "/exercises/static/media/KaTeX_Size3-Regular.d27d182ea833ec6cc72e.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/exercises/static/media/KaTeX_Size3-Regular.943a01ec6dae1a54fa8b.woff2",
     "index.html": "/exercises/index.html",
-    "main.8f000161.css.map": "/exercises/static/css/main.8f000161.css.map",
-    "main.3c009d06.js.map": "/exercises/static/js/main.3c009d06.js.map"
+    "main.9ce8370c.css.map": "/exercises/static/css/main.9ce8370c.css.map",
+    "main.b8ab00a4.js.map": "/exercises/static/js/main.b8ab00a4.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f000161.css",
-    "static/js/main.3c009d06.js"
+    "static/css/main.9ce8370c.css",
+    "static/js/main.b8ab00a4.js"
   ]
 }
