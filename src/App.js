@@ -13,9 +13,7 @@ function Home() {
             Testtheorie und Testkonstruktion
           </h3> */}
           <h2 className="font-bold text-3xl sm:text-4xl">
-            <p className="underlined">
-              <span>&nbsp;Übungsaufgaben&nbsp;</span>
-            </p>
+            <span className="shadow-under">&nbsp;Übungsaufgaben&nbsp;</span>
           </h2>
           <article className="leading-normal">
             <div>

@@ -52,10 +52,8 @@ export default function Rasch() {
           {/* <h3 className="text-teal-700 font-semibold">
             Testtheorie und Testkonstruktion
           </h3> */}
-          <h2 className="font-bold text-2xl sm:text-4xl">
-            <p className="underlined">
-              <span>&nbsp;Das Rasch-Modell&nbsp;</span>
-            </p>
+          <h2 className="font-bold text-3xl sm:text-4xl">
+            <span className="shadow-under">&nbsp;Das Rasch-Modell&nbsp;</span>
           </h2>
           <article className="leading-normal">
             <div>

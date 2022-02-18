@@ -78,7 +78,11 @@ module.exports = {
       gray: colors.gray,
       slate: colors.slate,
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        under: "inset 0 -1.3rem 0 #12dcea44",
+      },
+    },
   },
   plugins: [],
 };
